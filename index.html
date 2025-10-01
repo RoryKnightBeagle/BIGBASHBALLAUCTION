@@ -1,0 +1,139 @@
+xml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ball Silent Auction Gallery</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 1em;
+    max-width: 600px;
+    margin: auto;
+    background: #f8f8f8;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+  }
+  .item-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: calc(50% - 1em);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .item-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .item-details {
+    padding: 0.8em;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-description {
+    margin: 0.5em 0;
+    flex-grow: 1;
+  }
+  .bid-button {
+    margin-top: 0.8em;
+    padding: 0.6em;
+    background: #0066cc;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .bid-button:hover {
+    background: #004a99;
+  }
+  @media(max-width: 480px) {
+    .item-card {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Ball Silent Auction Items</h1>
+  <div class="gallery" id="gallery">
+    <!-- Gallery items will be injected here -->
+  </div>
+
+  <script>
+    // Sample auction items data
+    const auctionItems = [
+      {
+        id: 1,
+        title: "Luxury Spa Package",
+        description: "Relaxing 3-day spa retreat for two including massages and dinner.",
+        startingBid: "£150",
+        imageUrl: "https://via.placeholder.com/300x200?text=Luxury+Spa"
+      },
+      {
+        id: 2,
+        title: "Signed Sports Memorabilia",
+        description: "Autographed football from the national team.",
+        startingBid: "£75",
+        imageUrl: "https://via.placeholder.com/300x200?text=Sports+Memorabilia"
+      },
+      {
+        id: 3,
+        title: "Gourmet Dinner for Four",
+        description: "Dinner at a Michelin-starred restaurant.",
+        startingBid: "£200",
+        imageUrl: "https://via.placeholder.com/300x200?text=Gourmet+Dinner"
+      },
+      {
+        id: 4,
+        title: "Weekend Getaway",
+        description: "Two night stay at a countryside B&B.",
+        startingBid: "£120",
+        imageUrl: "https://via.placeholder.com/300x200?text=Weekend+Getaway"
+      }
+    ];
+
+    // Function to handle bid button click
+    function placeBid(itemId) {
+      const item = auctionItems.find(i => i.id === itemId);
+      const bidAmount = prompt(`Enter your bid for "${item.title}" (starting at ${item.startingBid}):`);
+      if (bidAmount) {
+        alert(`Thank you for your bid of ${bidAmount} on "${item.title}".`);
+        // You can add logic here to send bid to server or update in real-time
+      }
+    }
+
+    // Render gallery items
+    const galleryElem = document.getElementById('gallery');
+    auctionItems.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${item.imageUrl}" alt="${item.title}" />
+        <div class="item-details">
+          <h3>${item.title}</h3>
+          <p class="item-description">${item.description}</p>
+          <p><strong>Starting Bid:</strong> ${item.startingBid}</p>
+          <button class="bid-button" onclick="placeBid(${item.id})">Place Bid</button>
+        </div>
+      `;
+      galleryElem.appendChild(card);
+    });
+  </script>
+</body>
+</html>
