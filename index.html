@@ -1,110 +1,120 @@
+Here is your updated HTML code. The Formspree endpoint has been replaced with https://formspree.io/f/mvgwrzzo for all auction lot forms. Everything else remains unchanged and ready for use on GitHub Pages.
+
 xml
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Silent Auction Bidding</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 10px; }
-    h1 { text-align: center; }
-    .auction-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; border-radius: 5px; }
-    .bid-form { margin-top: 10px; }
-    input, button { padding: 8px; margin-top: 5px; width: 100%; box-sizing: border-box; }
-    button { background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    button:hover { background-color: #0056b3; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Auction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+        }
+        .lot {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+        .reserve {
+            font-weight: bold;
+            color: #b22222;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007BFF;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .form-container {
+            display: none;
+            margin-top: 15px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Silent Auction Bidding</h1>
+    <h1>Silent Auction</h1>
 
-  <div class="auction-item">
-    <h2>1 Week Hunting in Normandy</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="1 Week Hunting in Normandy" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
+    <!-- Auction lots -->
+    <div id="lots"></div>
 
-  <div class="auction-item">
-    <h2>Flat in Broadstairs, Kent - Weekend Stay</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Flat in Broadstairs, Kent - Weekend Stay" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
+    <script>
+        const lotsData = [
+            { title: "Sketch picture by James Flemming of a beagling scene, ‘Getting Ahead’", reserve: 100 },
+            { title: "A day Roe or Fallow stalking near Pulborough, followed by a day butchering your carcass nearby to take home and enjoy.", reserve: 200 },
+            { title: "10/12 hour day lobster/crab fishing in Scarborough (can take home catch).", reserve: 75 },
+            { title: "Day beagling with Warwickshire Beagles.", reserve: 20 },
+            { title: "Hunting in the Normandy area of France for 1 week with the provision of horses.", reserve: 400 },
+            { title: "Day fly fishing for trout on the River Stour near Chilham, Kent. A guide is available.", reserve: 110 },
+            { title: "Pair of Downland Beagles hunt jugs.", reserve: 75 },
+            { title: "Pair of walking sticks, 124cm high.", reserve: 20 },
+            { title: "Weekend at a flat near the Sea in Broadstairs, Kent.", reserve: 200 },
+            { title: "A day boar hunting in central France on electric bikes.", reserve: 75 },
+            { title: "4 x Vitality Blast T20 tickets at Lords.", reserve: 300 },
+            { title: "A day racing for two at Newbury.", reserve: 75 },
+            { title: "A full day of hospitality and tickets to Peper Harrow Point to Point.", reserve: 100 },
+            { title: "Day at the gallops/stable tour with a Royal Ascot winning trainer at Epsom.", reserve: 40 },
+            { title: "VIP package including lunch at a Hickstead Show.", reserve: 250 },
+            { title: "Morning driven pheasant shooting at Castle Goring estate.", reserve: 150 },
+            { title: "A bag of logs.", reserve: 30 }
+        ];
 
-  <div class="auction-item">
-    <h2>A Box of Fallow</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="A Box of Fallow" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
+        const lotsContainer = document.getElementById('lots');
 
-  <div class="auction-item">
-    <h2>Two Tickets to Day Racing at Newbury</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Two Tickets to Day Racing at Newbury" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
+        lotsData.forEach((lot, index) => {
+            const lotDiv = document.createElement('div');
+            lotDiv.className = 'lot';
+            lotDiv.innerHTML = `
+                <h3>Lot ${index + 1}: ${lot.title}</h3>
+                <p class="reserve">Reserve Price: £${lot.reserve}</p>
+                <button onclick="toggleForm(${index})">Bid Now</button>
+                <div class="form-container" id="form-${index}">
+                    <form action="https://formspree.io/f/mvgwrzzo" method="POST">
+                        <input type="hidden" name="Lot" value="Lot ${index + 1}: ${lot.title}">
+                        <label>Name:</label>
+                        <input type="text" name="Name" required>
+                        <label>Surname:</label>
+                        <input type="text" name="Surname" required>
+                        <label>Bid Amount (£):</label>
+                        <input type="number" name="Bid" step="1" required>
+                        <label>Email:</label>
+                        <input type="email" name="Email" required>
+                        <label>Phone Number:</label>
+                        <input type="tel" name="Phone" required>
+                        <button type="submit">Submit Bid</button>
+                    </form>
+                </div>
+            `;
+            lotsContainer.appendChild(lotDiv);
+        });
 
-  <div class="auction-item">
-    <h2>Two Tickets to Point-to-Point in Surrey with Hospitality</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Two Tickets to Point-to-Point in Surrey with Hospitality" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
-
-  <div class="auction-item">
-    <h2>Original Beagle Picture Sketch</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Original Beagle Picture Sketch" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
-
-  <div class="auction-item">
-    <h2>Day Lobster/Crab Fishing in Scarborough</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Day Lobster/Crab Fishing in Scarborough" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
-
-  <div class="auction-item">
-    <h2>Four Tickets to a T20 Match at Lords Next Summer</h2>
-    <form class="bid-form" action="https://formspree.io/f/mvgwrzzo" method="POST">
-      <input type="hidden" name="lot" value="Four Tickets to a T20 Match at Lords Next Summer" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="text" name="contact" placeholder="Email or Phone Number" required />
-      <input type="number" name="bid" placeholder="Your Bid Amount (£)" min="0" step="0.01" required />
-      <button type="submit">Place Bid</button>
-    </form>
-  </div>
-
+        function toggleForm(index) {
+            const form = document.getElementById(`form-${index}`);
+            form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
