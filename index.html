@@ -1,5 +1,4 @@
 See our amazing list of auction prizes. The auction will close at 6pm on Sunday night after the ball. Payment and collection details will be provided to winning bidders that week. Thank you so much for coming to our ball!!
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,25 +61,25 @@ See our amazing list of auction prizes. The auction will close at 6pm on Sunday 
 
     <script>
         const lotsData = [
-            { title: "Sketch Picture by James Flemming of a beagling scene, ‘Getting Ahead’.", recommended min value: 100 },
-            { title: "Day Roe/Fallow stalking near Pulborough, followed by a day butchering your carcass nearby to take home and enjoy.", recommended min value: 200 },
-            { title: "10/12 Hour day lobster/crab fishing in Scarborough (can take home catch).", recommended min value: 75 },
-            { title: "Day beagling with Warwickshire Beagles.", recommended min value: 20 },
-            { title: "Stag hunting in the Normandy area of France for 1 week with the provision of horses. Options for beagling, buck and boar hunting nearby.", recommended min value: 400 },
-            { title: "A highly sought after day fly fishing for Trout on the River Stour near Chilham, Kent.", recommended min value: 110 },
-            { title: "Pair of Downland Beagles hunt jugs.", recommended min value: 75 },
-            { title: "Pair of walking sticks, 124cm high.", recommended min value: 20 },
-            { title: "Weekend at a flat near the Sea in Broadstairs, Kent. Can be taken any time. Includes one double bed and another separate twin bed room with two bathrooms, walking distance to the sea.", recommended min value: 200 },
-            { title: "A day boar hunting in central France on electric bikes.", recommended min value: 75 },
-            { title: "4 x Vitality Blast T20 tickets in June/July 2026 for a Middlesex match at Lords. The seats are in the Upper Mound Stand which features a private bar.", recommended min value: 300 },
-            { title: "A day racing for two at Newbury.", recommended min value: 75 },
-            { title: "A full day of hospitality and tickets to Peper Harow Point to Point. Hospitality provided by Ashley Doherty.", recommended min value: 100 },
-            { title: "Morning at the gallops/stable tour with Royal Ascot winning trainer George Baker at Epsom.", recommended min value: 40 },
-            { title: "VIP Package of 4 x Member’s Enclosure badges with car parking and a lunch for 4 people in the Member’s Restaurant on Friday 19th June 2026.", recommended min value: 250 },
-            { title: "A morning driven pheasant shooting at the Castle Goring estate, informal bag of between 30-40 birds.", recommended min value: 150 },
-            { title: "A bag of logs.", recommended min value: 30 },
-            { title: "Box of fallow deer.", recommended min value: 100 },
-            { title: "Two bottles of ‘Downland Beagle’ gin.", recommended min value: 50 }
+            { title: "Sketch Picture by James Flemming of a beagling scene, ‘Getting Ahead’.", recommendedMinValue: 100 },
+            { title: "Day Roe/Fallow stalking near Pulborough, followed by a day butchering your carcass nearby to take home and enjoy.", recommendedMinValue: 200 },
+            { title: "10/12 Hour day lobster/crab fishing in Scarborough (can take home catch).", recommendedMinValue: 75 },
+            { title: "Day beagling with Warwickshire Beagles.", recommendedMinValue: 20 },
+            { title: "Stag hunting in the Normandy area of France for 1 week with the provision of horses. Options for beagling, buck and boar hunting nearby.", recommendedMinValue: 400 },
+            { title: "A highly sought after day fly fishing for Trout on the River Stour near Chilham, Kent.", recommendedMinValue: 110 },
+            { title: "Pair of Downland Beagles hunt jugs.", recommendedMinValue: 75 },
+            { title: "Pair of walking sticks, 124cm high.", recommendedMinValue: 20 },
+            { title: "Weekend at a flat near the Sea in Broadstairs, Kent. Can be taken any time. Includes one double bed and another separate twin bed room with two bathrooms, walking distance to the sea.", recommendedMinValue: 200 },
+            { title: "A day boar hunting in central France on electric bikes.", recommendedMinValue: 75 },
+            { title: "4 x Vitality Blast T20 tickets in June/July 2026 for a Middlesex match at Lords. The seats are in the Upper Mound Stand which features a private bar.", recommendedMinValue: 300 },
+            { title: "A day racing for two at Newbury.", recommendedMinValue: 75 },
+            { title: "A full day of hospitality and tickets to Peper Harow Point to Point. Hospitality provided by Ashley Doherty.", recommendedMinValue: 100 },
+            { title: "Morning at the gallops/stable tour with Royal Ascot winning trainer George Baker at Epsom.", recommendedMinValue: 40 },
+            { title: "VIP Package of 4 x Member’s Enclosure badges with car parking and a lunch for 4 people in the Member’s Restaurant on Friday 19th June 2026.", recommendedMinValue: 250 },
+            { title: "A morning driven pheasant shooting at the Castle Goring estate, informal bag of between 30-40 birds.", recommendedMinValue: 150 },
+            { title: "A bag of logs.", recommendedMinValue: 30 },
+            { title: "Box of fallow deer.", recommendedMinValue: 100 },
+            { title: "Two bottles of ‘Downland Beagle’ gin.", recommendedMinValue: 50 }
         ];
 
         const lotsContainer = document.getElementById('lots');
@@ -90,7 +89,7 @@ See our amazing list of auction prizes. The auction will close at 6pm on Sunday 
             lotDiv.className = 'lot';
             lotDiv.innerHTML = `
                 <h3>Lot ${index + 1}: ${lot.title}</h3>
-                <p class="reserve">Recommended min value: £${lot.reserve}</p>
+                <p class="reserve">Recommended min value: £${lot.recommendedMinValue}</p>
                 <button onclick="toggleForm(${index})">Bid Now</button>
                 <div class="form-container" id="form-${index}">
                     <form action="https://formspree.io/f/mvgwrzzo" method="POST">
@@ -119,3 +118,4 @@ See our amazing list of auction prizes. The auction will close at 6pm on Sunday 
     </script>
 </body>
 </html>
+
